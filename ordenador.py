@@ -193,8 +193,6 @@ class Ordenador:
             
             menor_ = Ordenador()
             menor_.quickSort(menor)
-            meio_ = Ordenador()
-            meio_.quickSort(meio)
             maior_ = Ordenador()
             maior_.quickSort(maior)
         
@@ -273,13 +271,13 @@ def main():
 
     print(v.mergeSort(testlist)) 
     
-    '''
+
     print("Testes com Quick Sort")
      
     x = Ordenador() #chamo a classe
 
     print(x.quickSort(testlist)) 
-    '''
+
         
     
     print("Testes com Short Bubble")
