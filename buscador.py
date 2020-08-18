@@ -5,32 +5,41 @@ Created on Sun Jun  7 07:49:58 2020
 @author: Joyce
 """
 
-
+###### Programa procura elemento em uma lista
+import time
 
 class Buscador:
     
     def busca_sequencial1(self, lista, x):
+        antes = time.time()
+        encontrado = False
         for i in range(len(lista)):
             if lista[i] == x:
-                return True
-        return False
+                encontrado = True
+        
+        depois = time.time()
+        return encontrado, depois - antes
 
     def busca_sequencial2(self, lista, x):
         
         i = 0
         encontrado = False
+        antes = time.time()
         while i < len(lista) and not encontrado:
             if lista[i] == x:
                 encontrado = True
             else:
                 i = i + 1
-        return encontrado
+        
+        depois = time.time()
+        return encontrado, depois - antes
     
     def busca_sequencial_ordenada(self, lista, x):
         
         i = 0
         encontrado = False
         stop = False #interrompe a busca de o elemento na lista for maior que o buscado
+        antes = time.time()
         
         while i < len(lista) and not encontrado and not stop:
             if lista[i] == x:
@@ -40,7 +49,8 @@ class Buscador:
                     stop = True
                 else:
                     i = i + 1
-        return encontrado
+        depois = time.time()
+        return encontrado, depois - antes
             
     ##### busca binaria
     '''
@@ -61,6 +71,7 @@ class Buscador:
         primeiro = 0
         ultimo = len(lista) - 1 #len da o número de elementos na lista, como a contagem começa em 0, a posição do ultimo da lista é len - 1
         encontrado = False
+        antes = time.time()
         
         while primeiro <= ultimo and not encontrado:
             meio = (primeiro + ultimo)//2
@@ -73,15 +84,22 @@ class Buscador:
                     ultimo = meio - 1
                 else:
                     primeiro = meio + 1
-        return encontrado
+        depois = time.time()
+        return encontrado, depois - antes
     
 #### Testes    
+import random
     
 def main():
     
+    testlist = []  
+    
+    for i in range(0, 21):
+        n = random.randint(1, 100)
+        testlist.append(n)
+    
     print("Testes com Busca Sequêncial")
-
-    testlist = [1, 2, 32, 8, 17, 19, 42, 13, 0]    
+   
     
     s = Buscador() #chamo a classe
 
@@ -101,7 +119,10 @@ def main():
     
     print("Testes com Busca Sequêncial em lista ordenada")
     
-    testlist2 = [0, 1, 2, 8, 13, 17, 19, 32, 42]
+    testlist2 = []
+    
+    for i in range(0, 21):
+        testlist2.append(i)
     
     t = Buscador() #chamo a classe
 
